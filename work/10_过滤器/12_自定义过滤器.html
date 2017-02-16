@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>12_自定义过滤器</title>
+</head>
+<body>
+
+<!--
+1. 全局过滤器
+  Vue.filter('过滤器名', function(value, xxx, yyy) {
+    //处理逻辑
+    return result;
+  });
+2. 局部过滤器
+  new Vue({
+    filters : {
+      '过滤器名' : function(value, xxx, yyy) {
+        //处理逻辑
+        return result;
+      }
+    }
+  })
+-->
+
+<div id="example">
+  <span>{{msg | myFilter 'left' 'right'}}</span><br/>
+  <span>{{msg | myFilter2 'llll' 'rrrr'}}</span>
+</div>
+
+<div id="example2">
+  <span>{{msg | myFilter 'left' 'right'}}</span><br/>
+  <span>{{msg | myFilter2 'llll' 'rrrr'}}</span>
+</div>
+
+<script type="text/javascript" src="../js/vue.js"></script>
+<script type="text/javascript">
+  Vue.filter('myFilter', function (val, leftStr, rightStr) {
+    return leftStr+'--'+val+'--'+rightStr
+  })
+
+  new Vue({
+      el : '#example',
+      data : {
+        msg: 'heheda'
+      },
+      methods : {
+      
+      },
+      filters:{
+        myFilter2(val, leftStr, rightStr) {
+          return leftStr+'**'+val+'**'+rightStr
+        }
+      },
+      computed : {
+          
+      }
+  })
+  
+  new Vue({
+      el : '#example2',
+      data : {
+        msg: 'memeda'
+      },
+      methods : {
+      
+      },
+      
+      computed : {
+          
+      }
+  });
+</script>
+</body>
+</html>

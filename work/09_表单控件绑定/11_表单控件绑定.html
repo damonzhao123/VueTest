@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<!--
+1. 使用v-model对表单项数据双向绑定
+  text/textarea
+  checkbox : 绑定boolean/string值
+  radio
+  select
+2. 失去焦点才更新: lazy
+3. 延迟指定时间才更新: debounce='1000'
+-->
+<div id="demo">
+  <span>msg is:{{msg}}</span><br/><br/>
+  <input type="text" v-model="msg"><br/><br/>
+  <textarea cols="30" rows="10" v-model="msg"></textarea><br/><br/>
+
+  <input type="checkbox" v-model="names" value="jack">jack
+  <input type="checkbox" v-model="names" value="tom">tom
+  <input type="checkbox" v-model="names" value="john">john
+  <br/><br/>
+  <span>names checked is: {{names | json}}</span>
+  <br/><br/>
+
+  <input type="radio" v-model="sex" value="male">男
+  <input type="radio" v-model="sex" value="female">女
+  <br/>
+  <span>sex is: {{sex}}</span>
+  <br/>
+
+  <select v-model="sel">
+    <option value="">请选择</option>
+    <option v-for="option in options" :value="option.id">{{option.name}}</option>
+  </select>
+  <br/>
+  <span>selected is: {{sel}}</span>
+  <br/>
+
+  <input type="text" v-model="lazyMsg" lazy>
+  <br/>
+  <span>lazyMsg is: {{lazyMsg}}</span>
+  <br/>
+
+  <input type="text" v-model="deMsg" debounce="2000">
+  <br/>
+  <span>deMsg is: {{deMsg}}</span>
+</div>
+
+<script type="text/javascript" src="../js/vue.js"></script>
+<script type="text/javascript">
+  new Vue({
+      el : '#demo',
+      data : {
+        msg: 'heheda',
+        names: ['jack'],
+        sex: 'female',
+        options: [
+          {id:1, name:'jack'},
+          {id:2, name:'tom'},
+          {id:3, name:'john'}
+        ],
+        sel: '',
+        lazyMsg: '',
+        deMsg: '',
+        domMsg: ''
+      },
+      methods : {
+
+      },
+
+      computed : {
+
+      }
+  });
+</script>
+</body>
+</html>

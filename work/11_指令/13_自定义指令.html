@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>14_自定义指令</title>
+</head>
+<body>
+
+<!--
+1. 注册全局指令
+  Vue.directive('my-directive', function(value){
+    this.el.innerHTML = value.toupperCase();
+  })
+2. 注册局部指令
+  directives : {
+    'my-directive' : function(value) {
+      this.el.innerHTML = value;
+    }
+  }
+3. 使用指令:
+  v-my-directive='xxx'
+4. 获取指令所在的dom元素对象:
+  this.el
+-->
+
+<div id="demo">
+  <p v-upper-directive="msg"></p>
+</div>
+
+<div id="demo2">
+  <p v-lower-directive="msg2"></p>
+</div>
+
+<script type="text/javascript" src="../js/vue.js"></script>
+<script type="text/javascript">
+  Vue.directive('upper-directive', function (val) {
+    console.log(this.el)
+    this.el.innerHTML = val.toUpperCase()
+  })
+
+  new Vue({
+      el : '#demo',
+      data : {
+        msg: 'heheda'
+      },
+      methods : {
+      
+      },
+
+      computed : {
+          
+      }
+  });
+  
+  new Vue({
+      el : '#demo2',
+      data : {
+        msg2: 'SDFsdfdsfsdf'
+      },
+      methods : {
+      
+      },
+      directives: {
+        'lower-directive': function(val){
+          this.el.innerHTML = val.toLowerCase()
+        }
+      },
+      computed : {
+          
+      }
+  });
+</script>
+</body>
+</html>

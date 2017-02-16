@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<!--
+1. capitalize : 首字母大小
+2. uppercase : 全部大写
+3. lowercase : 全部小写
+4. currency : 货币化
+5. pluralize : 单数/复数处理
+6. json : json格式化
+
+7. limitBy : 限定数组的部分元素(下标)
+8. filterBy : 限定数组的部分元素(值)
+9. orderBy : 对数组进行排序
+-->
+<div id="example">
+  <span>{{msg | capitalize}}</span><br/>
+  <span>{{msg | uppercase}}</span><br/>
+  <span>{{msg | lowercase}}</span><br/>
+  <span>{{123123.123123 | currency '¥'}}</span><br/>
+  <span>{{count}} {{count | pluralize 'student'}}</span><br/>
+  <span>{{arr}}--{{arr | json}}</span><br/>
+
+  <ul>
+    <li v-for="person in arr | limitBy 3 1">{{person.name+':'+person.age}}</li>
+  </ul>
+
+  <ul>
+    <li v-for="person in arr | filterBy 'r' in 'name'">{{person.name+':'+person.age}}</li>
+  </ul>
+
+  <ul>
+    <li v-for="person in arr | orderBy 'age' -1">{{person.name+':'+person.age}}</li>
+  </ul>
+</div>
+
+<script type="text/javascript" src="../js/vue.js"></script>
+<script type="text/javascript">
+  new Vue({
+      el : '#example',
+      data : {
+        msg: 'a good Boy',
+        count: 2,
+        arr:[
+          {name:'jack', age: 12},
+          {name:'john', age: 13},
+          {name:'lucy', age: 15},
+          {name:'marry', age: 13},
+          {name:'herry', age: 11},
+          {name:'beckham', age: 10},
+        ]
+      },
+      methods : {
+
+      },
+      
+      computed : {
+          
+      }
+  });
+</script>
+</body>
+</html>
